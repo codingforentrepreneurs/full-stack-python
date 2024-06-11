@@ -16,6 +16,7 @@ class State(rx.State):
 
     def did_click(self):
         print("Hello world did click")
+        return rx.redirect('/about-us')
 
 def index() -> rx.Component:
     # Welcome Page (Index)
@@ -26,18 +27,10 @@ def index() -> rx.Component:
                 rx.code(f"{config.app_name}/{config.app_name}.py"),
                 size="5",
             ),
-            # <button href='/about'></button>
-            rx.link(rx.button("Check out our docs!"), href='/about'),
-            # <input type='text' value='My value' />
-            rx.input(
-                default_value=State.label,
-                on_click=State.did_click,
-                on_change=State.handle_title_input_change,
-            ),
+            # rx.button("About us", on_click=State.did_click),
             rx.link(
-                rx.button("Check out our docs!"),
-                href="https://reflex.dev/docs/getting-started/introduction/",
-                is_external=True,
+                rx.button("About us"), 
+                href='/about'
             ),
             spacing="5",
             justify="center",
