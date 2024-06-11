@@ -26,6 +26,8 @@ def index() -> rx.Component:
                 rx.code(f"{config.app_name}/{config.app_name}.py"),
                 size="5",
             ),
+            # <button href='/about'></button>
+            rx.link(rx.button("Check out our docs!"), href='/about'),
             # <input type='text' value='My value' />
             rx.input(
                 default_value=State.label,

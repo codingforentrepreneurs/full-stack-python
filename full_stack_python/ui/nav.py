@@ -11,22 +11,28 @@ def navbar() -> rx.Component:
         rx.desktop_only(
             rx.hstack(
                 rx.hstack(
-                    rx.image(
-                        src="/logo.jpg",
-                        width="2.25em",
-                        height="auto",
-                        border_radius="25%",
+                    rx.link(
+                        rx.image(
+                            src="/logo.jpg",
+                            width="2.25em",
+                            height="auto",
+                            border_radius="25%",
+                        ),
+                        href='/'
                     ),
-                    rx.heading(
-                        "Reflex", size="7", weight="bold"
+                    rx.link(
+                        rx.heading(
+                            "Reflex", size="7", weight="bold"
+                        ),
+                        href='/'
                     ),
                     align_items="center",
                 ),
                 rx.hstack(
-                    navbar_link("Home", "/#"),
-                    navbar_link("About", "/#"),
-                    navbar_link("Pricing", "/#"),
-                    navbar_link("Contact", "/#"),
+                    navbar_link("Home", "/"),
+                    navbar_link("About", "/about"),
+                    navbar_link("Pricing", "/pricing"),
+                    navbar_link("Contact", "/contact"),
                     spacing="5",
                 ),
                 rx.hstack(
