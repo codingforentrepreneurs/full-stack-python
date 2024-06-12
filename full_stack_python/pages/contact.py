@@ -1,3 +1,4 @@
+import asyncio
 import reflex as rx 
 
 from .. import navigation
@@ -13,13 +14,16 @@ class ContactState(rx.State):
         first_name = self.form_data.get("first_name") or ""
         return f"Thank you {first_name}".strip() + "!"
 
-    def handle_submit(self, form_data: dict):
+    async def handle_submit(self, form_data: dict):
         """Handle the form submit."""
         print(form_data)
         self.form_data = form_data
         self.did_submit = True
+        yield
         # sleep -> timeout -> setTimeout
-        # self.did_submit = False
+        await asyncio.sleep(2)
+        self.did_submit = False
+        yield
 
 @rx.page(route=navigation.routes.CONTACT_US_ROUTE)
 def contact_page() -> rx.Component:
