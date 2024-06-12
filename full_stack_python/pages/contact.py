@@ -16,26 +16,33 @@ class ContactState(rx.State):
 def contact_page() -> rx.Component:
     my_form = rx.form(
             rx.vstack(
-                rx.input(
-                    name="first_name",
-                    placeholder="First Name",
-                    required=True,
-                    type='text'
-                ),
-                rx.input(
-                    name="last_name",
-                    placeholder="Last Name",
-                    type='text'
+                rx.hstack(
+                    rx.input(
+                        name="first_name",
+                        placeholder="First Name",
+                        required=True,
+                        type='text',
+                        width='100%',
+                    ),
+                    rx.input(
+                        name="last_name",
+                        placeholder="Last Name",
+                        type='text',
+                        width='100%',
+                    ),
+                    width='100%'
                 ),
                 rx.input(
                     name='email',
                     placeholder='Your email',
                     type='email',
+                    width='100%',
                 ),
                 rx.text_area(
                     name='message',
                     placeholder="Your message",
-                    required=True
+                    required=True,
+                    width='100%',
                 ),
                 rx.button("Submit", type="submit"),
             ),
@@ -44,7 +51,24 @@ def contact_page() -> rx.Component:
     )
     my_child = rx.vstack(
             rx.heading("Contact Us", size="9"),
-            my_form,
+            rx.desktop_only(
+                rx.box(
+                    my_form,
+                    width='50vw'
+                )
+            ),
+            rx.tablet_only(
+                rx.box(
+                    my_form,
+                    width='75vw'
+                )
+            ),
+            rx.mobile_only(
+                rx.box(
+                    my_form,
+                    width='95vw'
+                )
+            ),
             spacing="5",
             justify="center",
             align="center",
