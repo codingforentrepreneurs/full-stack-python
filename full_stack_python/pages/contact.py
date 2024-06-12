@@ -1,13 +1,15 @@
 import asyncio
 import reflex as rx 
 
+# from sqlmodel import Field
+
 from .. import navigation
 from ..ui.base import base_page
 
 class ContactEntryModel(rx.Model, table=True):
     first_name: str
-    last_name: str
-    email: str
+    last_name: str | None = None
+    email: str | None = None # = Field(nullable=True)
     message: str
 
 
@@ -36,7 +38,6 @@ class ContactState(rx.State):
             if v == "" or v is None:
                 continue
             data[k] = v
-        print(data)
         with rx.session() as session:
             db_entry = ContactEntryModel(
                 **data
