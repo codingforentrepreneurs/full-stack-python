@@ -71,10 +71,14 @@ def navbar() -> rx.Component:
                         rx.icon("menu", size=30)
                     ),
                     rx.menu.content(
-                        rx.menu.item("Home"),
-                        rx.menu.item("About"),
-                        rx.menu.item("Pricing"),
-                        rx.menu.item("Contact"),
+                        rx.menu.item("Home", 
+                            on_click=navigation.NavState.to_home),
+                        rx.menu.item("About", 
+                            on_click=navigation.NavState.to_about_us),
+                        rx.menu.item("Pricing", 
+                            on_click=navigation.NavState.to_pricing),
+                        rx.menu.item("Contact", 
+                            on_click=navigation.NavState.to_contact),
                         rx.menu.separator(),
                         rx.menu.item("Log in"),
                         rx.menu.item("Sign up"),
