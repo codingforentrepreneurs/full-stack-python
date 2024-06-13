@@ -29,5 +29,9 @@ class BlogPostModel(rx.Model, table=True):
         nullable=False
     )
     publish_active: bool = False
-    # publish_date
-    # publish_time
+    publish_date: datetime = Field(
+        default=None,
+        sa_type=sqlalchemy.DateTime(timezone=True),
+        sa_column_kwargs={},
+        nullable=True
+    )
