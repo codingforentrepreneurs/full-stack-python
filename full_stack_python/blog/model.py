@@ -8,6 +8,7 @@ from .. import utils
 
 class BlogPostModel(rx.Model, table=True):
     # user
+    # id: int -> primary key
     title: str
     content: str
     created_at: datetime = Field(

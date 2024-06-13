@@ -56,6 +56,11 @@ app.add_page(
     
 )
 
+app.add_page(
+    blog.blog_post_add_page, 
+    route=navigation.routes.BLOG_POST_ADD_ROUTE
+)
+
 app.add_page(contact.contact_page, 
              route=navigation.routes.CONTACT_US_ROUTE)
 app.add_page(
