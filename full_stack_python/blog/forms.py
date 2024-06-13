@@ -39,6 +39,7 @@ def blog_post_add_form() -> rx.Component:
 def blog_post_edit_form() -> rx.Component:
     post = BlogEditFormState.post
     title = post.title
+    publish_active = post.publish_active
     post_content = BlogEditFormState.post_content
     return rx.form(
             rx.box(
@@ -69,6 +70,34 @@ def blog_post_edit_form() -> rx.Component:
                     required=True,
                     height='50vh',
                     width='100%',
+                ),
+                rx.flex(
+                    rx.switch(
+                        default_checked=BlogEditFormState.post_publish_active,
+                        on_change=BlogEditFormState.set_post_publish_active,
+                        name='publish_active',          
+                    ),
+                    rx.text("Publish Active"),
+                    spacing="2",
+                ),
+                rx.cond(
+                    BlogEditFormState.post_publish_active,
+                    rx.box(
+                        rx.hstack(
+                            rx.input(
+                                type='date',
+                                name='publish_date',
+                                width='100%'
+                            ),
+                            rx.input(
+                                type='time',
+                                 name='publish_time',
+                                width='100%'
+                            ),
+                        width='100%'
+                        ),
+                        width='100%'
+                    )
                 ),
                 rx.button("Submit", type="submit"),
             ),
