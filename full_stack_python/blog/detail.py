@@ -7,7 +7,7 @@ from . import state
 # @rx.page(route='/about')
 def blog_post_detail_page() -> rx.Component:
     can_edit = True
-    edit_link = rx.link("Edit", href=f"/blog/{state.BlogPostState.blog_post_id}/edit")
+    edit_link = rx.link("Edit", href=f"{state.BlogPostState.blog_post_edit_url}")
     edit_link_el = rx.cond(
         can_edit,
         edit_link,
