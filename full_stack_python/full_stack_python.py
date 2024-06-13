@@ -64,6 +64,12 @@ app.add_page(pages.about_page,
              route=navigation.routes.ABOUT_US_ROUTE)
 
 app.add_page(
+    pages.protected_page, 
+    route="/protected/",
+    on_load=auth.SessionState.on_load
+)
+
+app.add_page(
     blog.blog_post_list_page, 
     route=navigation.routes.BLOG_POSTS_ROUTE,
     on_load=blog.BlogPostState.load_posts
