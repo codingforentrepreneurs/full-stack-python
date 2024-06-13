@@ -13,7 +13,7 @@ class BlogPostState(rx.State):
         with rx.session() as session:
             result = session.exec(
                 select(BlogPostModel)
-            )
+            ).all()
             self.posts = result
         # return
 

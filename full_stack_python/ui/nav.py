@@ -33,6 +33,7 @@ def navbar() -> rx.Component:
                 rx.hstack(
                     navbar_link("Home", navigation.routes.HOME_ROUTE),
                     navbar_link("About", navigation.routes.ABOUT_US_ROUTE),
+                    navbar_link("Blog", navigation.routes.BLOG_POSTS_ROUTE),
                     navbar_link("Pricing", navigation.routes.PRICING_ROUTE),
                     navbar_link("Contact", navigation.routes.CONTACT_US_ROUTE),
                     spacing="5",
@@ -75,6 +76,8 @@ def navbar() -> rx.Component:
                             on_click=navigation.NavState.to_home),
                         rx.menu.item("About", 
                             on_click=navigation.NavState.to_about_us),
+                        rx.menu.item("Blog", 
+                            on_click=navigation.NavState.to_blog),
                         rx.menu.item("Pricing", 
                             on_click=navigation.NavState.to_pricing),
                         rx.menu.item("Contact", 
