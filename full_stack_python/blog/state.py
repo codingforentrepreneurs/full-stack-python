@@ -25,6 +25,9 @@ class BlogPostState(rx.State):
                 )
             ).one_or_none()
             self.post = result
+            if result is None:
+                self.post_content = ""
+                return
             self.post_content = self.post.content
         # return
 
