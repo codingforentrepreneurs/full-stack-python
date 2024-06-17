@@ -8,7 +8,10 @@ from . import form, state, model
 def contact_entry_list_item(contact: model.ContactEntryModel):
     return rx.box(
         rx.heading(contact.first_name),
-        rx.text(contact.message),
+        rx.text("Message:", contact.message),
+        rx.cond(contact.user_id, 
+                rx.text("User Id:", f"{contact.user_id}",), 
+                rx.fragment("")),
         padding='1em'
     )
 
