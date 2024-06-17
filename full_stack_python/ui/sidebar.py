@@ -3,6 +3,34 @@ from reflex.style import toggle_color_mode
 
 from .. import navigation 
 
+
+
+def sidebar_logout_item() -> rx.Component:
+    return rx.box(
+        rx.hstack(
+            rx.icon("log-out"),
+            rx.text("Logout", size="4"),
+            width="100%",
+            padding_x="0.5rem",
+            padding_y="0.75rem",
+            align="center",
+            style={
+                "_hover": {
+                    "cursor": "pointer", # css
+                    "bg": rx.color("accent", 4),
+                    "color": rx.color("accent", 11),
+                },
+                "color": rx.color("accent", 11),
+                "border-radius": "0.5em",
+            },
+        ),
+        on_click=navigation.NavState.to_logout,
+        as_='button',
+        underline="none",
+        weight="medium",
+        width="100%",
+    )
+
 def sidebar_dark_mode_toggle_item() -> rx.Component:
     return rx.box(
         rx.hstack(
@@ -96,9 +124,7 @@ def sidebar() -> rx.Component:
                 rx.vstack(
                     rx.vstack(
                         sidebar_dark_mode_toggle_item(),
-                        sidebar_item(
-                            "Log out", "log-out", "/#"
-                        ),
+                        sidebar_logout_item(),
                         spacing="1",
                         width="100%",
                     ),
@@ -169,16 +195,8 @@ def sidebar() -> rx.Component:
                             rx.spacer(),
                             rx.vstack(
                                 rx.vstack(
-                                    sidebar_item(
-                                        "Settings",
-                                        "settings",
-                                        "/#",
-                                    ),
-                                    sidebar_item(
-                                        "Log out",
-                                        "log-out",
-                                        "/#",
-                                    ),
+                                    sidebar_dark_mode_toggle_item(),
+                                    sidebar_logout_item(),
                                     width="100%",
                                     spacing="1",
                                 ),
