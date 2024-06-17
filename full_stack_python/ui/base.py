@@ -20,7 +20,7 @@ def base_layout_component(child, *args, **kwargs) -> rx.Component:
     )
 
 def base_page(child: rx.Component, *args, **kwargs) -> rx.Component:
-    is_logged_in = False
+    is_logged_in = True
     if not isinstance(child,rx. Component):
         child = rx.heading("this is not a valid child element")
     return rx.cond(
