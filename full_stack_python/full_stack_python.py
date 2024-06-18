@@ -13,6 +13,11 @@ from .auth.pages import (
 )
 from .auth.state import SessionState
 
+
+from .articles.detail import article_detail_page
+from .articles.list import article_public_list_page
+from .articles.state import ArticlePublicState
+
 from . import blog, contact, navigation, pages
 
 class State(rx.State):
@@ -84,6 +89,20 @@ app.add_page(
     route="/protected/",
     on_load=SessionState.on_load
 )
+
+
+app.add_page(
+    article_public_list_page, 
+    route=navigation.routes.ARTICLE_LIST_ROUTE,
+    on_load=ArticlePublicState.load_posts
+)
+
+app.add_page(
+    article_detail_page, 
+    route=f"{navigation.routes.ARTICLE_LIST_ROUTE}/[post_id]",
+    on_load=ArticlePublicState.get_post_detail
+)
+
 
 app.add_page(
     blog.blog_post_list_page, 
