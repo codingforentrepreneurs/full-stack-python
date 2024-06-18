@@ -1,5 +1,6 @@
 import reflex as rx 
 
+from ..auth.state import SessionState
 from .. import navigation
 from ..ui.base import base_page
 
@@ -31,6 +32,7 @@ def contact_entries_list_page() ->rx.Component:
     ) 
 
 def contact_page() -> rx.Component:
+    
     my_child = rx.vstack(
             rx.heading("Contact Us", size="9"),
             rx.cond(state.ContactState.did_submit, state.ContactState.thank_you, ""),

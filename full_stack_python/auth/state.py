@@ -11,6 +11,12 @@ from .models import UserInfo
 class SessionState(reflex_local_auth.LocalAuthState):
 
     @rx.cached_var
+    def my_user_id(self) -> str | None:
+        if self.authenticated_user.id < 0:
+            return None
+        return self.authenticated_user.id
+    
+    @rx.cached_var
     def authenticated_username(self) -> str | None:
         if self.authenticated_user.id < 0:
             return None
