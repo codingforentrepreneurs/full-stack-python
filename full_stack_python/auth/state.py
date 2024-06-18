@@ -9,6 +9,11 @@ from ..models import UserInfo
 
 
 class SessionState(reflex_local_auth.LocalAuthState):
+    @rx.cached_var
+    def my_userinfo_id(self) -> str | None:
+        if self.authenticated_user_info is None:
+            return None
+        return self.authenticated_user_info.id
 
     @rx.cached_var
     def my_user_id(self) -> str | None:
@@ -35,7 +40,7 @@ class SessionState(reflex_local_auth.LocalAuthState):
             if result is None:
                 return None
             # database lookup
-            result.user
+            # result.user
             # user_obj = result.user
             # print(result.user)
             return result
