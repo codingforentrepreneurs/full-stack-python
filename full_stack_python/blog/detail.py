@@ -3,7 +3,7 @@ import reflex as rx
 from ..ui.base import base_page
 
 from . import state
-
+from .notfound import blog_post_not_found
 # @rx.page(route='/about')
 def blog_post_detail_page() -> rx.Component:
     can_edit = True
@@ -13,7 +13,7 @@ def blog_post_detail_page() -> rx.Component:
         edit_link,
         rx.fragment("")
     )
-    my_child = rx.vstack(
+    my_child = rx.cond(state.BlogPostState.post, rx.vstack(
             rx.hstack(
                 rx.heading(state.BlogPostState.post.title, size="9"),
                 edit_link_el,
@@ -30,5 +30,7 @@ def blog_post_detail_page() -> rx.Component:
             spacing="5",
             align="center",
             min_height="85vh"
+        ), 
+        blog_post_not_found()
         )
     return base_page(my_child)
