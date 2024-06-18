@@ -3,7 +3,7 @@ import reflex_local_auth
 
 import sqlmodel
 
-from .models import UserInfo
+from ..models import UserInfo
 
 
 

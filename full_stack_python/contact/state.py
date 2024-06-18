@@ -3,9 +3,10 @@ import asyncio
 import reflex as rx 
 
 from sqlmodel import select
-from .model import ContactEntryModel
+
 
 from ..auth.state import SessionState
+from ..models import ContactEntryModel
 
 class ContactState(SessionState):
     form_data: dict = {}
