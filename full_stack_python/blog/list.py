@@ -1,5 +1,5 @@
 import reflex as rx 
-
+import reflex_local_auth
 from .. import navigation
 from ..ui.base import base_page
 from ..models import BlogPostModel
@@ -32,6 +32,7 @@ def blog_post_list_item(post: BlogPostModel):
 # def foreach_callback(text):
 #     return rx.box(rx.text(text))
 
+@reflex_local_auth.require_login
 def blog_post_list_page() ->rx.Component:
     return base_page(
         rx.vstack(

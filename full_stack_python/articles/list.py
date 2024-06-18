@@ -5,7 +5,7 @@ from ..ui.base import base_page
 from ..models import BlogPostModel
 from . import state
 
-def article_link(post: BlogPostModel):
+def article_card_link(post: BlogPostModel):
     post_id = post.id
     if post_id is None:
         return rx.fragment("Not found")
@@ -24,20 +24,19 @@ def article_link(post: BlogPostModel):
         as_child=True,
     )
 
-def article_list_item(post: BlogPostModel):
-    return rx.box(
-        article_link(post),
-        padding='1em'
+def article_public_list_component(columns:int=3, spacing:int=5, limit:int=100) -> rx.Component:
+    return rx.grid(
+        rx.foreach(state.ArticlePublicState.posts, article_card_link),
+        columns=f'{columns}',
+        spacing=f'{spacing}',
+        on_mount=lambda: state.ArticlePublicState.set_limit_and_reload(limit)
     )
-
 
 def article_public_list_page() ->rx.Component:
     return base_page(
-        rx.vstack(
+        rx.box(
             rx.heading("Published Articles",  size="5"),
-            rx.foreach(state.ArticlePublicState.posts, article_list_item),
-            spacing="5",
-            align="center",
+            article_public_list_component(),
             min_height="85vh",
         )
     ) 
