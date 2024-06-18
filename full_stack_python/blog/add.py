@@ -1,8 +1,9 @@
 import reflex as rx 
-
+import reflex_local_auth
 from ..ui.base import base_page
 from . import forms
 
+@reflex_local_auth.require_login
 def blog_post_add_page() -> rx.Component:
     my_form = forms.blog_post_add_form()
     my_child = rx.vstack(
