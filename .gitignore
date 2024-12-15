@@ -6,4 +6,4 @@ alembic.ini
 alembic/
 assets/external/
 .venv/
-
+.web
